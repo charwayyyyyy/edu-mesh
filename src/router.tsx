@@ -12,6 +12,8 @@ import OrganizationProfilePage from './pages/OrganizationProfilePage';
 import ApplicationTrackerPage from './pages/ApplicationTrackerPage';
 import CareerStoriesPage from './pages/CareerStoriesPage';
 import CollabMarketplacePage from './pages/CollabMarketplacePage';
+import EventsPage from './pages/EventsPage';
+import LearningPathsPage from './pages/LearningPathsPage';
 import AuthPage from './pages/AuthPage';
 
 export const router = createBrowserRouter([
@@ -31,6 +33,8 @@ export const router = createBrowserRouter([
       { path: 'applications', element: <ApplicationTrackerPage /> },
       { path: 'stories', element: <CareerStoriesPage /> },
       { path: 'collaborate', element: <CollabMarketplacePage /> },
+      { path: 'events', element: <EventsPage /> },
+      { path: 'learning', element: <LearningPathsPage /> },
     ],
   },
   {

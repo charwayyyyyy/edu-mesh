@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store';
-import { AcademicCapIcon, BriefcaseIcon, UserGroupIcon, BookOpenIcon } from '@heroicons/react/24/outline';
+import { AcademicCapIcon, BriefcaseIcon, UserGroupIcon, BookOpenIcon, CalendarIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 
 const Navbar = () => {
@@ -47,6 +47,10 @@ const Navbar = () => {
               <NavLink to="/stories">
                 <BookOpenIcon className="h-5 w-5 mr-1" />
                 Career Stories
+              </NavLink>
+              <NavLink to="/events">
+                <CalendarIcon className="h-5 w-5 mr-1" />
+                Events
               </NavLink>
             </div>
           </div>
@@ -118,6 +122,7 @@ const Navbar = () => {
           <MobileNavLink to="/mentorship">Mentorship</MobileNavLink>
           <MobileNavLink to="/skills">Skill Exchange</MobileNavLink>
           <MobileNavLink to="/stories">Career Stories</MobileNavLink>
+          <MobileNavLink to="/events">Events</MobileNavLink>
         </div>
         <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
           {isAuthenticated ? (
