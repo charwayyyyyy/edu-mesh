@@ -1,0 +1,28 @@
+<svg width="200" height="50" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 'Edu' text -->
+  <path d="M20 10H35V15H25V20H33V25H25V35H20V10Z" fill="#4F46E5"/>
+  <path d="M40 10H55C57.7614 10 60 12.2386 60 15V30C60 32.7614 57.7614 35 55 35H40V10ZM45 15V30H55V15H45Z" fill="#4F46E5"/>
+  <path d="M65 10H80C82.7614 10 85 12.2386 85 15V35H80V30H70V35H65V15C65 12.2386 67.2386 10 70 10H80ZM70 15V25H80V15H70Z" fill="#4F46E5"/>
+  
+  <!-- 'Mesh' text -->
+  <path d="M95 10H100V25L110 10H115V35H110V20L100 35H95V10Z" fill="#2563EB"/>
+  <path d="M120 10H135C137.761 10 140 12.2386 140 15V30C140 32.7614 137.761 35 135 35H120V10ZM125 15V30H135C135 30 135 15 135 15H125Z" fill="#2563EB"/>
+  <path d="M145 10H150V20C150 22.7614 152.239 25 155 25H160C162.761 25 165 22.7614 165 20V10H170V20C170 25.5228 165.523 30 160 30H155C149.477 30 145 25.5228 145 20V10Z" fill="#2563EB"/>
+  <path d="M175 10H190C192.761 10 195 12.2386 195 15V35H190V30H180V35H175V15C175 12.2386 177.239 10 180 10H190ZM180 15V25H190V15H180Z" fill="#2563EB"/>
+  
+  <!-- Connection lines representing a network/mesh -->
+  <circle cx="25" cy="40" r="2" fill="#4F46E5"/>
+  <circle cx="50" cy="40" r="2" fill="#4F46E5"/>
+  <circle cx="75" cy="40" r="2" fill="#2563EB"/>
+  <circle cx="100" cy="40" r="2" fill="#2563EB"/>
+  <circle cx="125" cy="40" r="2" fill="#2563EB"/>
+  <circle cx="150" cy="40" r="2" fill="#2563EB"/>
+  <circle cx="175" cy="40" r="2" fill="#2563EB"/>
+  
+  <line x1="25" y1="40" x2="50" y2="40" stroke="#4F46E5" stroke-width="1"/>
+  <line x1="50" y1="40" x2="75" y2="40" stroke="#4F46E5" stroke-width="1"/>
+  <line x1="75" y1="40" x2="100" y2="40" stroke="#2563EB" stroke-width="1"/>
+  <line x1="100" y1="40" x2="125" y2="40" stroke="#2563EB" stroke-width="1"/>
+  <line x1="125" y1="40" x2="150" y2="40" stroke="#2563EB" stroke-width="1"/>
+  <line x1="150" y1="40" x2="175" y2="40" stroke="#2563EB" stroke-width="1"/>
+</svg>
