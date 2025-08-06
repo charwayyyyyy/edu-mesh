@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
-import ChatInterface from './ChatInterface';
+// TODO: Fix ChatInterface import once module is created
+const ChatInterface = () => null;
 import { useAuthStore } from '../../store';
 
 interface ChatContact {
@@ -14,7 +15,7 @@ interface ChatContact {
 }
 
 const ChatManager = () => {
-  const { isAuthenticated, user } = useAuthStore();
+  const { isAuthenticated } = useAuthStore();
   const [activeChats, setActiveChats] = useState<string[]>([]);
   const [minimizedChats, setMinimizedChats] = useState<string[]>([]);
   const [showContactsList, setShowContactsList] = useState(false);

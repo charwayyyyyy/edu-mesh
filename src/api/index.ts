@@ -23,8 +23,8 @@ apiClient.interceptors.request.use(
 
 // Response interceptor for handling errors
 apiClient.interceptors.response.use(
-  (response) => response,
-  (error) => {
+  (response: any) => response,
+  (error: AxiosError) => {
     // Handle specific error codes
     if (error.response) {
       // Handle 401 Unauthorized errors

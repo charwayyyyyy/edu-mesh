@@ -416,7 +416,7 @@ const LearningPathsPage = () => {
                       {
                         id: 'module-6',
                         title: 'Hands-on Exercise',
-                        description: 'Apply what you've learned in a practical exercise',
+                        description: 'Apply what you\'ve learned in a practical exercise',
                         duration: '45 min',
                         type: 'project',
                         completed: selectedPathData.progress ? selectedPathData.progress > 60 : false,
