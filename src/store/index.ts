@@ -112,30 +112,17 @@ export const useAuthStore = create<AuthState>(
   )
 );
 
-// Job and Opportunity Store
-interface Job {
-  id: string;
-  title: string;
-  company: string;
-  location: string;
-  type: 'full-time' | 'part-time' | 'internship' | 'volunteer' | 'contract';
-  description: string;
-  requirements: string[];
-  postedBy: string;
-  postedDate: string;
-  isCommunityImpact?: boolean;
-  applicationDeadline?: string;
-  salary?: string;
-}
+import { mockJobs } from '../api/mock-data/jobs';
+import { Job } from '../components/jobs/JobCard';
 
+// Job and Opportunity Store
 interface JobState {
   jobs: Job[];
   isLoading: boolean;
   error: string | null;
   fetchJobs: () => Promise<void>;
-  addJob: (job: Omit<Job, 'id'>) => Promise<void>;
+  addJob: (job: Omit<Job, 'id' | 'postedAt'>) => Promise<void>;
   applyToJob: (jobId: string) => Promise<void>;
-  filterJobs: (filters: Partial<{ type: string; location: string; field: string }>) => Promise<void>;
 }
 
 export const useJobStore = create<JobState>((set) => ({
@@ -148,34 +135,7 @@ export const useJobStore = create<JobState>((set) => ({
       // This would be replaced with actual API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
       set({
-        jobs: [
-          {
-            id: '1',
-            title: 'Frontend Developer',
-            company: 'Tech Ghana',
-            location: 'Accra',
-            type: 'full-time',
-            description: 'We are looking for a frontend developer to join our team.',
-            requirements: ['React', 'JavaScript', 'CSS'],
-            postedBy: 'John Doe',
-            postedDate: '2023-05-01',
-            applicationDeadline: '2023-06-01',
-            salary: 'GHS 3000 - 5000',
-          },
-          {
-            id: '2',
-            title: 'Community Outreach Intern',
-            company: 'Ghana Education NGO',
-            location: 'Kumasi',
-            type: 'internship',
-            description: 'Help us reach more communities with educational resources.',
-            requirements: ['Communication', 'Social Media', 'Community Engagement'],
-            postedBy: 'Jane Smith',
-            postedDate: '2023-05-05',
-            isCommunityImpact: true,
-            applicationDeadline: '2023-06-15',
-          },
-        ],
+        jobs: mockJobs,
         isLoading: false,
       });
     } catch (error) {
@@ -196,7 +156,7 @@ export const useJobStore = create<JobState>((set) => ({
           {
             ...job,
             id: Math.random().toString(36).substr(2, 9),
-            postedDate: new Date().toISOString().split('T')[0],
+            postedAt: new Date(),
           },
         ],
         isLoading: false,
@@ -211,10 +171,6 @@ export const useJobStore = create<JobState>((set) => ({
   applyToJob: async (jobId) => {
     // Implementation would depend on the application tracking system
     console.log(`Applied to job ${jobId}`);
-  },
-  filterJobs: async (filters) => {
-    // This would be replaced with actual API call with filters
-    console.log('Filtering jobs with:', filters);
   },
 }));
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Plugin } from '../types';
 import { getInstalledPlugins, enablePlugin, disablePlugin, uninstallPlugin } from './index';
+import { createPluginContext } from './PluginContext';
+import { usePluginStore } from '../store';
 
 /**
  * PluginManager Component
@@ -13,33 +15,7 @@ const PluginManager: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'installed' | 'marketplace'>('installed');
   const [isLoading, setIsLoading] = useState<boolean>(true);
   
-  // Mock plugin context for demonstration purposes
-  const mockPluginContext = {
-    services: {
-      auth: {
-        getCurrentUser: () => ({}),
-        isAuthenticated: () => true,
-      },
-      navigation: {
-        navigateTo: (route: string) => console.log(`Navigate to: ${route}`),
-        getCurrentRoute: () => '/plugins',
-      },
-      notification: {
-        showNotification: (message: string, type: 'info' | 'success' | 'warning' | 'error') => 
-          console.log(`Notification: ${message} (${type})`),
-      },
-      storage: {
-        getData: (key: string) => null,
-        setData: (key: string, value: any) => {},
-      },
-    },
-    extensionPoints: {
-      registerMenuItem: () => {},
-      registerDashboardWidget: () => {},
-      registerProfileSection: () => {},
-      registerSkill: () => {},
-    },
-  };
+  const pluginContext = createPluginContext();
   
   // Load installed plugins
   useEffect(() => {
@@ -109,7 +85,7 @@ const PluginManager: React.FC = () => {
   // Handle enabling a plugin
   const handleEnablePlugin = (pluginId: string) => {
     // In a real implementation, this would call an API
-    const success = enablePlugin(pluginId, mockPluginContext as any);
+    const success = enablePlugin(pluginId, pluginContext);
     if (success) {
       setPlugins(prevPlugins =>
         prevPlugins.map(plugin =>
@@ -143,29 +119,29 @@ const PluginManager: React.FC = () => {
   
   // Handle installing a plugin
   const handleInstallPlugin = (plugin: Plugin) => {
-    // In a real implementation, this would call an API
+    usePluginStore.getState().installPlugin(plugin);
     setPlugins(prevPlugins => [
       ...prevPlugins,
-      { ...plugin, installed: true },
+      { ...plugin, installed: true, enabled: true },
     ]);
   };
   
   return (
     <div className="container mx-auto py-6 px-4">
-      <h1 className="text-2xl font-bold mb-6">Plugin Manager</h1>
+      <h1 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-neutral-0">Plugin Manager</h1>
       
       {/* Tabs */}
-      <div className="border-b border-gray-200 mb-6">
+      <div className="border-b border-neutral-200 dark:border-neutral-700 mb-6">
         <nav className="-mb-px flex space-x-8">
           <button
             onClick={() => setActiveTab('installed')}
-            className={`${activeTab === 'installed' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+            className={`${activeTab === 'installed' ? 'border-brand text-brand' : 'border-transparent text-neutral-500 hover:text-neutral-700 hover:border-neutral-300'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
           >
             Installed Plugins
           </button>
           <button
             onClick={() => setActiveTab('marketplace')}
-            className={`${activeTab === 'marketplace' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+            className={`${activeTab === 'marketplace' ? 'border-brand text-brand' : 'border-transparent text-neutral-500 hover:text-neutral-700 hover:border-neutral-300'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
           >
             Plugin Marketplace
           </button>
@@ -175,18 +151,18 @@ const PluginManager: React.FC = () => {
       {/* Content based on active tab */}
       {activeTab === 'installed' ? (
         <div>
-          <h2 className="text-lg font-semibold mb-4">Installed Plugins</h2>
+          <h2 className="text-lg font-semibold mb-4 text-neutral-900 dark:text-neutral-0">Installed Plugins</h2>
           
           {isLoading ? (
             <div className="flex justify-center items-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand"></div>
             </div>
           ) : plugins.length === 0 ? (
-            <div className="bg-white rounded-lg shadow p-8 text-center">
-              <p className="text-gray-500 mb-4">You don't have any plugins installed.</p>
+            <div className="bg-neutral-0 dark:bg-neutral-800 rounded-lg shadow p-8 text-center">
+              <p className="text-neutral-500 dark:text-neutral-400 mb-4">You don't have any plugins installed.</p>
               <button 
                 onClick={() => setActiveTab('marketplace')} 
-                className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
+                className="bg-brand text-white px-4 py-2 rounded hover:bg-brand-dark"
               >
                 Browse Plugin Marketplace
               </button>
@@ -194,14 +170,14 @@ const PluginManager: React.FC = () => {
           ) : (
             <div className="space-y-4">
               {plugins.map(plugin => (
-                <div key={plugin.id} className="bg-white rounded-lg shadow p-6">
+                <div key={plugin.id} className="bg-neutral-0 dark:bg-neutral-800 rounded-lg shadow p-6">
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="font-semibold text-lg">{plugin.name}</h3>
-                      <p className="text-gray-600 mt-1">{plugin.description}</p>
+                      <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-0">{plugin.name}</h3>
+                      <p className="text-neutral-600 dark:text-neutral-300 mt-1">{plugin.description}</p>
                       <div className="mt-2 flex items-center space-x-4 text-sm">
-                        <span className="text-gray-500">v{plugin.version}</span>
-                        <span className="text-gray-500">By {plugin.author}</span>
+                        <span className="text-neutral-500 dark:text-neutral-400">v{plugin.version}</span>
+                        <span className="text-neutral-500 dark:text-neutral-400">By {plugin.author}</span>
                       </div>
                     </div>
                     
@@ -216,10 +192,10 @@ const PluginManager: React.FC = () => {
                         />
                         <label 
                           htmlFor={`toggle-${plugin.id}`} 
-                          className={`toggle-label block overflow-hidden h-6 rounded-full cursor-pointer ${plugin.enabled ? 'bg-indigo-500' : 'bg-gray-300'}`}
+                          className={`toggle-label block overflow-hidden h-6 rounded-full cursor-pointer ${plugin.enabled ? 'bg-brand' : 'bg-neutral-300'}`}
                         ></label>
                       </div>
-                      <span className="text-sm text-gray-500">{plugin.enabled ? 'Enabled' : 'Disabled'}</span>
+                      <span className="text-sm text-neutral-500 dark:text-neutral-400">{plugin.enabled ? 'Enabled' : 'Disabled'}</span>
                       
                       <button 
                         onClick={() => handleUninstallPlugin(plugin.id)}
@@ -236,13 +212,13 @@ const PluginManager: React.FC = () => {
         </div>
       ) : (
         <div>
-          <h2 className="text-lg font-semibold mb-4">Plugin Marketplace</h2>
+          <h2 className="text-lg font-semibold mb-4 text-neutral-900 dark:text-neutral-0">Plugin Marketplace</h2>
           
           <div className="mb-6">
             <input 
               type="text" 
               placeholder="Search plugins..." 
-              className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-4 py-2 border border-neutral-300 dark:border-neutral-700 rounded-md shadow-sm focus:outline-none focus:ring-brand focus:border-brand"
             />
           </div>
           
@@ -251,21 +227,21 @@ const PluginManager: React.FC = () => {
               const isInstalled = plugins.some(p => p.id === plugin.id);
               
               return (
-                <div key={plugin.id} className="bg-white rounded-lg shadow p-6">
+                <div key={plugin.id} className="bg-neutral-0 dark:bg-neutral-800 rounded-lg shadow p-6">
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="font-semibold text-lg">{plugin.name}</h3>
-                      <p className="text-gray-600 mt-1">{plugin.description}</p>
+                      <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-0">{plugin.name}</h3>
+                      <p className="text-neutral-600 dark:text-neutral-300 mt-1">{plugin.description}</p>
                       <div className="mt-2 flex items-center space-x-4 text-sm">
-                        <span className="text-gray-500">v{plugin.version}</span>
-                        <span className="text-gray-500">By {plugin.author}</span>
+                        <span className="text-neutral-500 dark:text-neutral-400">v{plugin.version}</span>
+                        <span className="text-neutral-500 dark:text-neutral-400">By {plugin.author}</span>
                       </div>
                       
                       {plugin.requiredPermissions.length > 0 && (
                         <div className="mt-2">
-                          <span className="text-xs text-gray-500">Required permissions: </span>
+                          <span className="text-xs text-neutral-500 dark:text-neutral-400">Required permissions: </span>
                           {plugin.requiredPermissions.map(permission => (
-                            <span key={permission} className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded ml-1">
+                            <span key={permission} className="text-xs bg-neutral-100 text-neutral-800 px-2 py-1 rounded ml-1">
                               {permission}
                             </span>
                           ))}
@@ -275,7 +251,7 @@ const PluginManager: React.FC = () => {
                     
                     <button 
                       onClick={() => handleInstallPlugin(plugin)}
-                      className={`px-4 py-2 rounded text-sm ${isInstalled ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
+                      className={`px-4 py-2 rounded text-sm ${isInstalled ? 'bg-neutral-200 text-neutral-500 cursor-not-allowed' : 'bg-brand text-white hover:bg-brand-dark'}`}
                       disabled={isInstalled}
                     >
                       {isInstalled ? 'Installed' : 'Install'}

@@ -15,7 +15,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow-md">
+<nav className="bg-neutral-0 dark:bg-neutral-800 shadow-sm border-b border-neutral-200 dark:border-neutral-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex">
@@ -26,9 +26,9 @@ const Navbar = () => {
                   animate={{ rotate: 0 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <AcademicCapIcon className="h-8 w-8 text-primary-600" />
+                  <AcademicCapIcon className="h-8 w-8 text-brand" />
                 </motion.div>
-                <span className="ml-2 text-xl font-bold text-gray-900 dark:text-white">EduMesh</span>
+                <span className="ml-2 text-xl font-bold text-neutral-900 dark:text-neutral-0">EduMesh</span>
               </Link>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -59,7 +59,7 @@ const Navbar = () => {
               <div className="flex items-center">
                 <Link
                   to={`/profile/${user?.id}`}
-                  className="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                  className="flex items-center text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-0"
                 >
                   <img
                     className="h-8 w-8 rounded-full object-cover"
@@ -70,7 +70,7 @@ const Navbar = () => {
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="ml-4 px-3 py-1 text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                  className="ml-4 px-3 py-1 text-sm text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-0"
                 >
                   Logout
                 </button>
@@ -79,7 +79,7 @@ const Navbar = () => {
               <div>
                 <Link
                   to="/auth"
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-brand hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand"
                 >
                   Sign In
                 </Link>
@@ -89,7 +89,7 @@ const Navbar = () => {
           <div className="-mr-2 flex items-center sm:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-neutral-400 hover:text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand"
             >
               <span className="sr-only">Open main menu</span>
               <svg
@@ -124,7 +124,7 @@ const Navbar = () => {
           <MobileNavLink to="/stories">Career Stories</MobileNavLink>
           <MobileNavLink to="/events">Events</MobileNavLink>
         </div>
-        <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
+        <div className="pt-4 pb-3 border-t border-neutral-200 dark:border-neutral-700">
           {isAuthenticated ? (
             <div className="flex items-center px-4">
               <div className="flex-shrink-0">
@@ -135,15 +135,15 @@ const Navbar = () => {
                 />
               </div>
               <div className="ml-3">
-                <div className="text-base font-medium text-gray-800 dark:text-white">{user?.name}</div>
-                <div className="text-sm font-medium text-gray-500 dark:text-gray-400">{user?.email}</div>
+                <div className="text-base font-medium text-neutral-800 dark:text-neutral-0">{user?.name}</div>
+                <div className="text-sm font-medium text-neutral-500 dark:text-neutral-400">{user?.email}</div>
               </div>
             </div>
           ) : (
             <div className="px-4">
               <Link
                 to="/auth"
-                className="block text-center px-4 py-2 text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-md"
+                className="block text-center px-4 py-2 text-sm font-medium text-white bg-brand hover:bg-brand-dark rounded-md"
               >
                 Sign In
               </Link>
@@ -153,13 +153,13 @@ const Navbar = () => {
             <div className="mt-3 px-2 space-y-1">
               <Link
                 to={`/profile/${user?.id}`}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
+                className="block px-3 py-2 rounded-md text-base font-medium text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-0 hover:bg-neutral-50 dark:hover:bg-neutral-700"
               >
                 Your Profile
               </Link>
               <button
                 onClick={handleLogout}
-                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
+                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-0 hover:bg-neutral-50 dark:hover:bg-neutral-700"
               >
                 Sign out
               </button>
@@ -175,7 +175,7 @@ const NavLink = ({ to, children }: { to: string; children: React.ReactNode }) =>
   return (
     <Link
       to={to}
-      className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 dark:text-gray-300 hover:text-gray-700 dark:hover:text-white hover:border-primary-500 transition duration-150 ease-in-out"
+      className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-neutral-500 dark:text-neutral-300 hover:text-neutral-700 dark:hover:text-white hover:border-brand transition duration-150 ease-in-out"
     >
       {children}
     </Link>
@@ -186,7 +186,7 @@ const MobileNavLink = ({ to, children }: { to: string; children: React.ReactNode
   return (
     <Link
       to={to}
-      className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-primary-500 transition duration-150 ease-in-out"
+      className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-800 dark:hover:text-white hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:border-brand transition duration-150 ease-in-out"
     >
       {children}
     </Link>
