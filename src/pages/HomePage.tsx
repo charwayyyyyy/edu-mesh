@@ -14,42 +14,42 @@ const HomePage = () => {
   const { isAuthenticated, user } = useAuthStore();
 
   return (
-    <div className="space-y-16">
+<div className="space-y-24">
       {/* Hero Section */}
       <section className="text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto"
+          className="max-w-4xl mx-auto"
         >
-          <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white sm:text-5xl sm:tracking-tight lg:text-6xl">
-            <span className="block text-primary-600">EduMesh</span>
+          <h1 className="text-4xl font-extrabold text-neutral-900 dark:text-neutral-0 sm:text-5xl tracking-tight lg:text-6xl">
+            <span className="block text-brand">EduMesh</span>
             <span className="block">Connecting Ghanaian University Communities</span>
           </h1>
-          <p className="mt-5 max-w-xl mx-auto text-xl text-gray-500 dark:text-gray-300">
+          <p className="mt-6 max-w-2xl mx-auto text-lg text-neutral-600 dark:text-neutral-300">
             Build your network, find mentors, share skills, and discover opportunities within the Ghanaian university
             ecosystem.
           </p>
-          <div className="mt-8 flex justify-center space-x-4">
+          <div className="mt-10 flex justify-center gap-x-6">
             {!isAuthenticated ? (
               <Link
                 to="/auth"
-                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-brand hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand"
               >
                 Join Now
               </Link>
             ) : (
               <Link
                 to={`/profile/${user?.id}`}
-                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-brand hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand"
               >
                 View Profile
               </Link>
             )}
             <Link
               to="/about"
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-primary-100 hover:bg-primary-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+              className="inline-flex items-center px-8 py-3 border border-neutral-300 dark:border-neutral-700 text-base font-medium rounded-full text-brand bg-neutral-0 hover:bg-neutral-100 dark:bg-neutral-800 dark:text-neutral-0 dark:hover:bg-neutral-700"
             >
               Learn More
             </Link>
@@ -61,19 +61,19 @@ const HomePage = () => {
       <section>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-base font-semibold text-primary-600 tracking-wide uppercase">Features</h2>
-            <p className="mt-1 text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl sm:tracking-tight">
+            <h2 className="text-base font-semibold text-brand tracking-wide uppercase">Features</h2>
+            <p className="mt-2 text-3xl font-extrabold text-neutral-900 dark:text-neutral-0 sm:text-4xl tracking-tight">
               Everything you need to succeed
             </p>
-            <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500 dark:text-gray-300">
+            <p className="max-w-2xl mt-5 mx-auto text-lg text-neutral-600 dark:text-neutral-300">
               Connect with alumni, find mentors, exchange skills, and discover opportunities tailored to your journey.
             </p>
           </div>
 
-          <div className="mt-12">
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-16">
+            <div className="grid grid-cols-1 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-8 lg:gap-x-12">
               <FeatureCard
-                icon={<UserGroupIcon className="h-8 w-8 text-primary-600" />}
+                icon={<UserGroupIcon className="h-8 w-8 text-brand" />}
                 title="Verified Alumni Profiles"
                 description="Connect with authentic alumni profiles linked to university records for credibility and trust."
                 link="/mentorship"
@@ -82,7 +82,7 @@ const HomePage = () => {
               />
 
               <FeatureCard
-                icon={<ChatBubbleLeftRightIcon className="h-8 w-8 text-primary-600" />}
+                icon={<ChatBubbleLeftRightIcon className="h-8 w-8 text-brand" />}
                 title="Mentorship Matching"
                 description="Find mentors based on shared departments, career paths, or hometowns for personalized guidance."
                 link="/mentorship"
@@ -91,7 +91,7 @@ const HomePage = () => {
               />
 
               <FeatureCard
-                icon={<BookOpenIcon className="h-8 w-8 text-primary-600" />}
+                icon={<BookOpenIcon className="h-8 w-8 text-brand" />}
                 title="Career Stories"
                 description="Learn from alumni journeys, including failures and wins, through engaging stories and experiences."
                 link="/stories"
@@ -100,7 +100,7 @@ const HomePage = () => {
               />
 
               <FeatureCard
-                icon={<BriefcaseIcon className="h-8 w-8 text-primary-600" />}
+                icon={<BriefcaseIcon className="h-8 w-8 text-brand" />}
                 title="Job Board & Referrals"
                 description="Discover job openings posted by alumni, get referrals, and attend virtual career talks."
                 link="/jobs"
@@ -109,7 +109,7 @@ const HomePage = () => {
               />
 
               <FeatureCard
-                icon={<AcademicCapIcon className="h-8 w-8 text-primary-600" />}
+                icon={<AcademicCapIcon className="h-8 w-8 text-brand" />}
                 title="Campus Chapters"
                 description="Join digital hubs for your university, department, or hall to stay connected with your community."
                 link="/campus"
@@ -118,7 +118,7 @@ const HomePage = () => {
               />
 
               <FeatureCard
-                icon={<LightBulbIcon className="h-8 w-8 text-primary-600" />}
+                icon={<LightBulbIcon className="h-8 w-8 text-brand" />}
                 title="Skill Exchange"
                 description="Trade skills with peers: 'I'll design your poster if you help me prep for my statistics exam.'"
                 link="/skills"
@@ -131,17 +131,17 @@ const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-primary-700 rounded-lg shadow-xl">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
-          <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+      <section className="bg-brand-dark rounded-lg shadow-xl">
+        <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 lg:flex lg:items-center lg:justify-between">
+          <h2 className="text-3xl font-extrabold tracking-tight text-neutral-0 sm:text-4xl">
             <span className="block">Ready to dive in?</span>
-            <span className="block text-primary-200">Join the EduMesh community today.</span>
+            <span className="block text-brand-light">Join the EduMesh community today.</span>
           </h2>
           <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
             <div className="inline-flex rounded-md shadow">
               <Link
                 to="/auth"
-                className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-white hover:bg-primary-50"
+                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-brand bg-white hover:bg-neutral-100"
               >
                 Get started
               </Link>
@@ -149,7 +149,7 @@ const HomePage = () => {
             <div className="ml-3 inline-flex rounded-md shadow">
               <Link
                 to="/about"
-                className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-800"
+                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand hover:bg-brand-light"
               >
                 Learn more
               </Link>
@@ -176,16 +176,18 @@ const FeatureCard = ({ icon, title, description, link, linkText, delay = 0 }: Fe
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.5 }}
-      className="relative p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+      className="text-center p-8 bg-neutral-0 dark:bg-neutral-800 rounded-xl shadow-sm hover:shadow-xl transition-shadow duration-300"
     >
-      <div className="absolute top-6 left-6">{icon}</div>
-      <div className="pt-16">
-        <h3 className="text-xl font-medium text-gray-900 dark:text-white">{title}</h3>
-        <p className="mt-2 text-base text-gray-500 dark:text-gray-300">{description}</p>
-        <div className="mt-4">
+      <div className="flex justify-center items-center h-16 w-16 mx-auto bg-brand-light rounded-full">
+        {icon}
+      </div>
+      <div className="mt-6">
+        <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-0">{title}</h3>
+        <p className="mt-2 text-base text-neutral-600 dark:text-neutral-300">{description}</p>
+        <div className="mt-6">
           <Link
             to={link}
-            className="text-base font-medium text-primary-600 hover:text-primary-500 dark:text-primary-400 dark:hover:text-primary-300"
+            className="text-base font-medium text-brand hover:text-brand-dark"
           >
             {linkText} &rarr;
           </Link>
